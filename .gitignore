@@ -2,5 +2,6 @@
 /.vscode
 /node_modules
 /vendor
+/tmp
 /composer.lock
 /package-lock.json
