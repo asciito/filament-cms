@@ -7,5 +7,12 @@
         "types_spaces": {
             "space": "single"
         }
-    }
+    },
+    "exclude": [
+        "bin",
+        "tmp",
+        "node_modules",
+        "resources/css",
+        "resources/js"
+    ]
 }
