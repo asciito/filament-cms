@@ -1,0 +1,70 @@
+{
+    "name": "asciito/filament-cms",
+    "description": "A simple CMS solution for Filament",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "asciito",
+            "email": "ayax.cordova@aydev.mx"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^8.2",
+        "filament/support": "^3.2"
+    },
+    "require-dev": {
+        "filament/filament": "^3.2",
+        "orchestra/testbench": "9.x-dev",
+        "pestphp/pest": "2.x-dev",
+        "pestphp/pest-plugin-laravel": "2.x-dev",
+        "pestphp/pest-plugin-livewire": "2.x-dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Asciito\\FilamentCms\\": "src/",
+            "Asciito\\FilamentCms\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve"
+        ],
+        "lint": [
+            "@php vendor/bin/phpstan analyse"
+        ],
+        "test": [
+            "@php vendor/bin/pest"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Asciito\\FilamentCms\\FilamentCmsServiceProvider"
+            ]
+        }
+    }
+}

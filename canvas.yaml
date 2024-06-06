@@ -1,0 +1,27 @@
+preset: package
+
+namespace: Asciito\FilamentCms
+user-auth-model: App\Models\User
+
+paths:
+  src: src
+  resource: resources
+
+factory:
+  path: database/factories
+
+migration:
+  path: database/migrations
+  prefix: ''
+
+console:
+  namespace: Asciito\FilamentCms\Console
+
+model:
+  namespace: Asciito\FilamentCms\Models
+
+provider:
+  namespace: Asciito\FilamentCms\Providers
+
+testing:
+  namespace: Asciito\FilamentCms\Tests

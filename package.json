@@ -1,0 +1,25 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev-styles": "npx tailwindcss -i resources/css/plugin.css -o resources/dist/plugin.css --postcss --watch",
+        "dev-scripts": "node bin/build.js --dev",
+        "build-styles": "npx tailwindcss -i resources/css/plugin.css -o resources/dist/plugin.css --postcss --minify && npm run purge",
+        "build-scripts": "node bin/build.js",
+        "purge": "filament-purge -i resources/dist/plugin.css -o resources/dist/plugin.css -v 3.x",
+        "dev": "conc --kill-others -c \"yellow.bgBlack,green.bgBlack\" \"npm:dev-*\"",
+        "build": "conc --kill-others -c \"yellow.bgBlack,green.bgBlack\" \"npm:build-*\""
+    },
+    "devDependencies": {
+        "@tailwindcss/forms": "^0.5.7",
+        "@tailwindcss/typography": "^0.5.13",
+        "autoprefixer": "^10.4.19",
+        "concurrently": "^8.2.2",
+        "esbuild": "0.21.4",
+        "postcss": "^8.4.38",
+        "postcss-import": "^16.1.0",
+        "prettier": "^3.3.1",
+        "prettier-plugin-tailwindcss": "^0.6.1",
+        "tailwindcss": "^3.4.4"
+    }
+}
