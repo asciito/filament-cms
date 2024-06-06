@@ -17,6 +17,7 @@
     "require-dev": {
         "filament/filament": "^3.2",
         "larastan/larastan": "^2.0",
+        "laravel/pint": "dev-main",
         "orchestra/testbench": "9.x-dev",
         "pestphp/pest": "2.x-dev",
         "pestphp/pest-plugin-laravel": "2.x-dev",
