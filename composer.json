@@ -31,7 +31,9 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Asciito\\FilamentCms\\Tests": "tests/",
+            "Asciito\\FilamentCms\\Tests\\": "tests/",
+            "Asciito\\FilamentCms\\Database\\Factories\\": "database/factories",
+            "Asciito\\FilamentCms\\Database\\Seeders\\": "database/seeders",
             "Workbench\\App\\": "workbench/app/",
             "Workbench\\Database\\Factories\\": "workbench/database/factories/",
             "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
