@@ -11,7 +11,10 @@
 |
 */
 
-// uses(Tests\TestCase::class)->in('Feature');
+uses(
+    Asciito\FilamentCms\Tests\TestCase::class,
+    \Illuminate\Foundation\Testing\RefreshDatabase::class,
+)->in('Feature');
 
 /*
 |--------------------------------------------------------------------------

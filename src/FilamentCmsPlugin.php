@@ -25,7 +25,7 @@ class FilamentCmsPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
-
+        // TODO: Configure Panel
     }
 
     public function boot(Panel $panel): void

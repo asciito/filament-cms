@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace Asciito\FilamentCms\Tests;
 
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 

@@ -3,13 +3,12 @@
 namespace Asciito\FilamentCms;
 
 use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider as ServiceProvider;
 
-class FilamentCmsServiceProvider extends \Spatie\LaravelPackageTools\PackageServiceProvider
+class FilamentCmsServiceProvider extends ServiceProvider
 {
     public function configurePackage(Package $package): void
     {
-        $package
-            ->name('filament-cms')
-            ->hasViews('filament-cms');
+        $package->name('filament-cms');
     }
 }
