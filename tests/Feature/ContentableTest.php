@@ -1,6 +1,5 @@
 <?php
 
-use Asciito\FilamentCms\Models\Contracts\ContentType;
 use Asciito\FilamentCms\Models\Page;
 use Asciito\FilamentCms\Models\Post;
 use function Pest\Laravel\assertDatabaseCount;

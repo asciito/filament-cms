@@ -2,12 +2,14 @@
 
 namespace Asciito\FilamentCms;
 
+use Asciito\FilamentCms\Filament\Resources\PageResource;
+use Asciito\FilamentCms\Filament\Resources\PostResource;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 
 class FilamentCmsPlugin implements Plugin
 {
-    public function make(): static
+    public static function make(): static
     {
         return app(static::class);
     }
@@ -25,7 +27,11 @@ class FilamentCmsPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
-        // TODO: Configure Panel
+        $panel
+            ->resources([
+                PostResource::class,
+                PageResource::class,
+            ]);
     }
 
     public function boot(Panel $panel): void

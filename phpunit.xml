@@ -3,23 +3,17 @@
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.3/phpunit.xsd"
          bootstrap="vendor/autoload.php"
          colors="true"
+         cacheDirectory="tmp/phpunit"
 >
     <testsuites>
-        <testsuite name="Test Suite">
-            <directory suffix="Test.php">./tests</directory>
+        <testsuite name="Feature">
+            <directory suffix="Test.php">./tests/Feature</directory>
+        </testsuite>
+        <testsuite name="Unit">
+            <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
     </testsuites>
-    <source>
-        <include>
-            <directory suffix=".php">./app</directory>
-            <directory suffix=".php">./src</directory>
-        </include>
-    </source>
     <php>
-        <env name="APP_KEY" value="base64:TtKSU49ykTWE3IP/UVhrIKRe/bmqQ6mAJT93pPxMtlM="/>
-        <env name="DB_CONNECTION" value="sqlite"/>
-        <env name="DB_HOST" value=":memory:"/>
-        <env name="CACHE_STORE" value=":memory:"/>
-        <env name="BCRYPT_ROUNDS" value="4"/>
+        <env name="APP_ENV" value="testing"/>
     </php>
 </phpunit>
