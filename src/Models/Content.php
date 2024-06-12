@@ -16,6 +16,7 @@ class Content extends Model
         'title',
         'slug',
         'body',
+        'status',
     ];
 
     protected $casts = [
