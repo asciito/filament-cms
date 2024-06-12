@@ -18,32 +18,54 @@ class PageResource extends Resource
 {
     protected static ?string $model = Page::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?int $navigationSort = 100;
+
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-list';
+
+    protected static ?string $navigationGroup = 'Blog';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema(components: [
-                Forms\Components\TextInput::make('title')
-                    ->dehydrateStateUsing(function (?string $state, Forms\Set $set) {
-                        if (empty($state)) {
-                            $id = Page::latest('id')->first()?->id + 1;
+                Forms\Components\Grid::make([
+                    1,
+                    'sm' => 12
+                ])->schema([
+                    Forms\Components\Section::make()
+                        ->schema([
+                            Forms\Components\TextInput::make('title')
+                                ->dehydrateStateUsing(function (?string $state, Forms\Set $set) {
+                                    if (empty($state)) {
+                                        $id = Page::latest('id')->first()?->id + 1;
 
-                            $state = "Your page title $id";
+                                        $state = "Your page title $id";
 
-                            $set('title', $state);
-                        }
+                                        $set('title', $state);
+                                    }
 
-                        return $state;
-                    }),
-                Forms\Components\TextInput::make('slug')
-                    ->unique(table: Page::class, ignoreRecord: true)
-                    ->dehydrateStateUsing(fn (?string $state, Forms\Get $get) => $state ?: Str::slug($get('title')))
-                    ->mutateStateForValidationUsing(fn (?string $state, Forms\Get $get) => $state ?: Str::slug($get('title'))),
-                Forms\Components\RichEditor::make('body'),
-                Forms\Components\Select::make('status')
-                    ->options(Status::forSelect())
-                    ->default('draft'),
+                                    return $state;
+                                }),
+                            Forms\Components\TextInput::make('slug')
+                                ->unique(table: Page::class, ignoreRecord: true)
+                                ->dehydrateStateUsing(fn (?string $state, Forms\Get $get) => $state ?: Str::slug($get('title')))
+                                ->mutateStateForValidationUsing(fn (?string $state, Forms\Get $get) => $state ?: Str::slug($get('title'))),
+                            Forms\Components\RichEditor::make('body'),
+                        ])
+                        ->columnSpan([
+                            'md' => 8
+                        ]),
+                    Forms\Components\Section::make()
+                        ->schema([
+                            Forms\Components\Select::make('status')
+                                ->options(Status::forSelect())
+                                ->default('draft')
+                                ->native(false),
+                        ])
+                        ->columnSpan([
+                            'md' => 4,
+                        ]),
+                ])
             ]);
 
     }
