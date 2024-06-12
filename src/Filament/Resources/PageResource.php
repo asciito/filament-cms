@@ -30,7 +30,7 @@ class PageResource extends Resource
             ->schema(components: [
                 Forms\Components\Grid::make([
                     1,
-                    'sm' => 12
+                    'sm' => 12,
                 ])->schema([
                     Forms\Components\Section::make()
                         ->schema([
@@ -53,7 +53,7 @@ class PageResource extends Resource
                             Forms\Components\RichEditor::make('body'),
                         ])
                         ->columnSpan([
-                            'md' => 8
+                            'md' => 8,
                         ]),
                     Forms\Components\Section::make()
                         ->schema([
@@ -65,7 +65,7 @@ class PageResource extends Resource
                         ->columnSpan([
                             'md' => 4,
                         ]),
-                ])
+                ]),
             ]);
 
     }
