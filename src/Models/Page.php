@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Page extends Content implements ContentType
 {
-    use HasFactory,
-        WithContentType;
+    use HasFactory;
+    use WithContentType;
 
     protected static function newFactory(): PageFactory
     {
