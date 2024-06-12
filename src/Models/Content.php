@@ -2,7 +2,7 @@
 
 namespace Asciito\FilamentCms\Models;
 
-use Asciito\FilamentCms\Models\Enumerables\Status;
+use Asciito\FilamentCms\Enumerables\Status;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

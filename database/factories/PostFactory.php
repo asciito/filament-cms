@@ -2,10 +2,8 @@
 
 namespace Asciito\FilamentCms\Database\Factories;
 
-use Asciito\FilamentCms\Models\Enumerables\Status;
 use Asciito\FilamentCms\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 /**
  * @template TModel of Post

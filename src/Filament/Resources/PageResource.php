@@ -2,8 +2,8 @@
 
 namespace Asciito\FilamentCms\Filament\Resources;
 
+use Asciito\FilamentCms\Enumerables\Status;
 use Asciito\FilamentCms\Filament\Resources\PageResource\Pages;
-use Asciito\FilamentCms\Models\Enumerables\Status;
 use Asciito\FilamentCms\Models\Page;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -42,7 +42,8 @@ class PageResource extends Resource
                     ->mutateStateForValidationUsing(fn (?string $state, Forms\Get $get) => $state ?: Str::slug($get('title'))),
                 Forms\Components\RichEditor::make('body'),
                 Forms\Components\Select::make('status')
-                    ->default('draft')
+                    ->options(Status::forSelect())
+                    ->default('draft'),
             ]);
 
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Asciito\FilamentCms\Models\Enumerables;
+namespace Asciito\FilamentCms\Enumerables;
 
 enum Status: string
 {

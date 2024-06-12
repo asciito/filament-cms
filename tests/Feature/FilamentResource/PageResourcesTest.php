@@ -4,7 +4,6 @@ use Asciito\FilamentCms\Filament\Resources\PageResource;
 use Asciito\FilamentCms\Filament\Resources\PageResource\Pages;
 use Asciito\FilamentCms\Models\Page;
 use Filament\Tables\Actions\DeleteAction;
-
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
 use function Pest\Laravel\isSoftDeletableModel;
@@ -40,7 +39,7 @@ it('can create page', function () {
         'slug' => 'this-is-a-test-title',
         'body' => 'This is some test body',
         'type' => 'page',
-        'status' => \Asciito\FilamentCms\Models\Enumerables\Status::DRAFT,
+        'status' => \Asciito\FilamentCms\Enumerables\Status::DRAFT,
     ]);
 });
 
@@ -121,7 +120,7 @@ it('can delete page', function () {
     \Pest\Laravel\assertDatabaseHas('contents', [
         'title' => $page->title,
         'type' => 'page',
-        'status' => \Asciito\FilamentCms\Models\Enumerables\Status::ARCHIVED,
+        'status' => \Asciito\FilamentCms\Enumerables\Status::ARCHIVED,
     ]);
 });
 
@@ -130,16 +129,16 @@ it('can publish a page', function () {
 
     livewire(PageResource\Pages\EditPage::class, ['record' => $page->getRouteKey()])
         ->fillForm([
-            'status' => \Asciito\FilamentCms\Models\Enumerables\Status::PUBLISHED,
+            'status' => \Asciito\FilamentCms\Enumerables\Status::PUBLISHED,
         ])
         ->assertFormSet([
-            'status' => \Asciito\FilamentCms\Models\Enumerables\Status::PUBLISHED,
+            'status' => \Asciito\FilamentCms\Enumerables\Status::PUBLISHED,
         ])
         ->call('save');
 
     \Pest\Laravel\assertDatabaseHas(Page::class, [
         'title' => $page->title,
         'slug' => $page->slug,
-        'status' => \Asciito\FilamentCms\Models\Enumerables\Status::PUBLISHED,
+        'status' => \Asciito\FilamentCms\Enumerables\Status::PUBLISHED,
     ]);
 });

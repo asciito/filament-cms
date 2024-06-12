@@ -2,8 +2,8 @@
 
 namespace Asciito\FilamentCms\Models\Concerns;
 
+use Asciito\FilamentCms\Enumerables\Status;
 use Asciito\FilamentCms\Models\Contracts\ContentType;
-use Asciito\FilamentCms\Models\Enumerables\Status;
 use Asciito\FilamentCms\Models\Exceptions\DoesNotImplementContentTypeClassException;
 use Illuminate\Support\Str;
 

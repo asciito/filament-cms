@@ -1,6 +1,6 @@
 <?php
 
-use Asciito\FilamentCms\Models\Enumerables\Status;
+use Asciito\FilamentCms\Enumerables\Status;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

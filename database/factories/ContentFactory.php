@@ -2,7 +2,7 @@
 
 namespace Asciito\FilamentCms\Database\Factories;
 
-use Asciito\FilamentCms\Models\Enumerables\Status;
+use Asciito\FilamentCms\Enumerables\Status;
 use Asciito\FilamentCms\Models\Page;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
