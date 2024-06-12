@@ -3,7 +3,6 @@
 namespace Asciito\FilamentCms;
 
 use Asciito\FilamentCms\Filament\Resources\PageResource;
-use Asciito\FilamentCms\Filament\Resources\PostResource;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 
@@ -29,7 +28,6 @@ class FilamentCmsPlugin implements Plugin
     {
         $panel
             ->resources([
-                PostResource::class,
                 PageResource::class,
             ]);
     }
