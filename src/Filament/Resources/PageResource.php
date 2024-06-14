@@ -34,22 +34,44 @@ class PageResource extends Resource
                 ])->schema([
                     Forms\Components\Section::make()
                         ->schema([
-                            Forms\Components\TextInput::make('title')
-                                ->dehydrateStateUsing(function (?string $state, Forms\Set $set) {
-                                    if (empty($state)) {
-                                        $id = Page::latest('id')->first()?->id + 1;
+                            Forms\Components\Group::make([
+                                    Forms\Components\TextInput::make('title')
+                                        ->live(debounce: 250)
+                                        ->afterStateUpdated(function (?string $state, Forms\Set $set, Forms\Get $get) {
+                                            $slugAlreadyUpdated = $get('slugAlreadyUpdated') ?? false;
 
-                                        $state = "Your page title $id";
+                                            if ($slugAlreadyUpdated) {
+                                                return;
+                                            }
 
-                                        $set('title', $state);
-                                    }
+                                            $set('slug', Str::slug($state));
+                                        })
+                                        ->dehydrateStateUsing(function (?string $state, Forms\Set $set) {
+                                            if (empty($state)) {
+                                                $id = Page::latest('id')->first()?->id + 1;
 
-                                    return $state;
-                                }),
-                            Forms\Components\TextInput::make('slug')
-                                ->unique(table: Page::class, ignoreRecord: true)
-                                ->dehydrateStateUsing(fn (?string $state, Forms\Get $get) => $state ?: Str::slug($get('title')))
-                                ->mutateStateForValidationUsing(fn (?string $state, Forms\Get $get) => $state ?: Str::slug($get('title'))),
+                                                $state = "Your page title $id";
+
+                                                $set('title', $state);
+                                            }
+
+                                            return $state;
+                                        }),
+                                    Forms\Components\TextInput::make('slug')
+                                        ->live(debounce: 500)
+                                        ->afterStateUpdated(function (?string $state, Forms\Set $set, Forms\Get $get) {
+                                            if ($state !== Str::slug($get('title'))) {
+                                                $set('slugAlreadyUpdated', true);
+                                            } else {
+                                                $set('slugAlreadyUpdated', false);
+                                            }
+
+                                            $set('slug', Str::slug($state));
+                                        })
+                                        ->unique(table: Page::class, ignoreRecord: true)
+                                        ->dehydrateStateUsing(fn (?string $state, Forms\Get $get) => $state ?: Str::slug($get('title')))
+                                        ->mutateStateForValidationUsing(fn (?string $state, Forms\Get $get) => $state ?: Str::slug($get('title'))),
+                                ]),
                             Forms\Components\RichEditor::make('body'),
                         ])
                         ->columnSpan([
