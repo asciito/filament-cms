@@ -21,7 +21,7 @@ class FilamentCmsPlugin implements Plugin
 
     public function getId(): string
     {
-        return 'filament-cms';
+        return 'asciito/filament-cms';
     }
 
     public function register(Panel $panel): void
